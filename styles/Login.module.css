@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #E0F4F1;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logoImg {
+  width: 300px;
+  height: 250px;
+  margin-bottom: -100px;
+  margin-right: 10px;
+
+}
+
+.icon {
+  font-size: 2rem;
+  margin-right: 8px;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3B4B5A;
+}
+
+.form {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+
+.button {
+  width: 106%;
+  background-color: #4356C5;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background-color: #3a49a8;
+}
+
+.demoAccess {
+  font-size: 0.8rem;
+  margin-top: 15px;
+  color: #555;
+}

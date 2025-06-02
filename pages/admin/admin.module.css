@@ -1,0 +1,146 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #e0f4f1;
+  font-family: sans-serif;
+}
+.bienvenido{
+    color: #3B4B5A;
+}
+
+.texto{
+    color: #3B4B5A;
+}
+.sidebar {
+  width: 300px;
+  background-color: #E4F9FE;
+  color: black;
+  padding: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  margin-bottom: -20px;
+}
+
+.nav a:hover {
+  background-color: #3B4B5A; 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-top: -50px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: -70px;
+}
+
+.nav li {
+  margin-bottom: 10px;
+}
+
+.nav a {
+  display: block;
+  padding: 12px 16px;
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.nav a:hover {
+  background-color: #2e3f4f; 
+}
+
+.main {
+  flex: 1;
+  padding: 40px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.panelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Aumenta el mínimo */
+  gap: 30px; /* Más espacio entre paneles */
+}
+
+.panel {
+  background-color: #f7f9fa;
+  border-radius: 10px;
+  padding: 30px; /* Más relleno interno */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Sombra más visible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px; /* Altura mínima aumentada */
+}
+
+.panel h3 {
+  margin: 0 0 15px;
+  font-size: 22px; /* Más grande */
+  color: #2c3e50;
+}
+
+.panel p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.panelBtn {
+  font-size: 16px;
+  background-color: #4356C5;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.panelBtn:hover {
+  background-color: #2f409f;
+}
+
+.alertPanel {
+  background-color: #fff0f0;
+}
+
+.alertBtn {
+  font-size: 16px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.alertBtn:hover {
+  background-color: #c0392b;
+}
+
+
+.main {
+  flex: 1;
+  padding: 40px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  background-color: #B9D1E0;
+}

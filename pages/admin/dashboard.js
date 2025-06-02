@@ -25,10 +25,8 @@ export default function AdminDashboard() {
       </aside>
 
       <main className={styles.main}>
-        <h1 className={styles.bienvenido}>Bienvenido, Administrador</h1>
-        <br></br>
-        <p className={styles.texto}>Aquí puedes administrar rifas, usuarios y monitorear el sistema.</p>
-        <br></br>
+        <h1>Bienvenido, Administrador</h1>
+        <p>Aquí puedes administrar rifas, usuarios y monitorear el sistema.</p>
         <h1 className={styles.heading}>Panel de Administración</h1>
 
     <div className={styles.panelGrid}>

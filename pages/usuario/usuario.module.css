@@ -1,0 +1,122 @@
+/* styles/DashboardUsuario.css */
+
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #e0f4f1;
+  font-family: sans-serif;
+  margin-top: -10px;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #E4F9FE;
+  color: black;
+  padding: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  margin-bottom: -20px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: -70px;
+}
+
+.nav li {
+  margin-bottom: 10px;
+}
+
+.nav a {
+  display: block;
+  padding: 12px 16px;
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.nav a:hover {
+  background-color: #2e3f4f; 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-top: -50px;
+}
+
+.main {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+.main {
+  flex: 1;
+  padding: 40px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  background-color: #B9D1E0;
+  margin-right: -8px;
+}
+
+.main h2 {
+  color: #13181a;
+  margin-bottom: 20px;
+}
+
+.main p {
+  color: #444;
+  font-size: 16px;
+  margin-bottom: 20px;
+}   
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Aumenta el mínimo */
+  gap: 30px; /* Más espacio entre paneles */
+}
+
+.card {
+  background-color: #f7f9fa;
+  border-radius: 10px;
+  padding: 30px; /* Más relleno interno */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Sombra más visible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px; /* Altura mínima aumentada */
+}
+
+.card h3 {
+  margin: 0 0 15px;
+  font-size: 22px; /* Más grande */
+  color: #2c3e50;
+}
+
+.card p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.card button {
+  font-size: 16px;
+  background-color: #4356C5;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #2f409f;
+}

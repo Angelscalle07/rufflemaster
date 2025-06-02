@@ -19,7 +19,7 @@ export default function AdminDashboard() {
             <li><Link href="#">Reportes</Link></li>
             <li><Link href="#">Alertas de fraude</Link></li>
             <li><Link href="#">Configuracion</Link></li>
-            <li><Link href="#">Cerrar sesion</Link></li>
+            <li><Link href="/" style={{ color: 'red' }}>Cerrar sesion</Link></li>
           </ul>
         </nav>
       </aside>

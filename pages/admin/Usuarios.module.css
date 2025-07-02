@@ -1,0 +1,59 @@
+.container {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.titulo {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2b2d42;
+}
+
+.subtitulo {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.tabla th,
+.tabla td {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: left;
+}
+
+.tabla th {
+  background-color: #f0f4f8;
+}
+
+.acciones button {
+  padding: 8px 12px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btnEditar {
+  background-color: #ffbe57;
+  color: #333;
+}
+
+.btnEliminar {
+  background-color: #e57373;
+  color: white;
+}
+
+.btnEditar:hover {
+  background-color: #f1aa2f;
+}
+
+.btnEliminar:hover {
+  background-color: #d94747;
+}

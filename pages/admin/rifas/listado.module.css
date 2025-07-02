@@ -1,0 +1,65 @@
+.contenedor {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2c3e50;
+}
+
+.titulo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: white;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla thead {
+  background-color: #e0f4f1;
+  color: #2c3e50;
+}
+
+.tabla th,
+.tabla td {
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.tabla tr:hover {
+  background-color: #f8f8f8;
+}
+
+.acciones button {
+  padding: 8px 12px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btnEditar {
+  background-color: #ffbe57;
+  color: #333;
+}
+
+.btnEliminar {
+  background-color: #e57373;
+  color: white;
+}
+
+.btnEditar:hover {
+  background-color: #f1aa2f;
+}
+
+.btnEliminar:hover {
+  background-color: #d94747;
+}

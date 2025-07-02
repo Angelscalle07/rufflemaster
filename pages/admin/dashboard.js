@@ -2,8 +2,25 @@ import styles from './admin.module.css';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
 
 export default function AdminDashboard() {
+
+  const router = useRouter();
+
+  const irARifas = () => {
+    router.push('/admin/rifas/listado');
+  };
+
+  const irANuevaRifa = () => {
+    router.push('/admin/rifas/nuevas');
+  };
+
+  const irAGestionUsuarios = () => {
+    router.push('/admin/usuarios');
+  };
+  
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
@@ -12,12 +29,11 @@ export default function AdminDashboard() {
         </div>
         <nav className={styles.nav}>
           <ul>
-            <li><Link href="#">Tablero</Link></li>
-            <li><Link href="#">Manejo de rifas</Link></li>
-            <li><Link href="#">Manejo de usuarios</Link></li>
+            <li><Link href="/admin/usuarios">Manejo de usuarios</Link></li>
             <li><Link href="#">Blockchain seguimiento</Link></li>
             <li><Link href="#">Reportes</Link></li>
             <li><Link href="#">Alertas de fraude</Link></li>
+            <li><Link href="/admin/perfil">Mi perfil</Link></li>
             <li><Link href="#">Configuracion</Link></li>
             <li><Link href="/" style={{ color: 'red' }}>Cerrar sesion</Link></li>
           </ul>
@@ -33,13 +49,14 @@ export default function AdminDashboard() {
     <div className={styles.panel}>
       <h3>🎯 Administrar Rifas</h3>
       <p>Crea, edita y monitorea rifas activas.</p>
-      <button className={styles.panelBtn}>Ir a rifas</button>
+      <button onClick={irANuevaRifa} className={styles.panelBtn}>Crear rifa</button>
+      <button onClick={irARifas} className={styles.panelBtn}>Ver rifas</button>
     </div>
 
     <div className={styles.panel}>
       <h3>👥 Gestión de Usuarios</h3>
       <p>Administra participantes y permisos.</p>
-      <button className={styles.panelBtn}>Ver usuarios</button>
+      <button onClick={irAGestionUsuarios} className={styles.panelBtn}>Ver usuarios</button>
     </div>
 
     <div className={styles.panel}>

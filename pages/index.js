@@ -4,6 +4,13 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export default function Login() {
+  
+  const router = useRouter();
+
+  const IraRegistro = () => {
+    router.push('/registrarse');
+  };
+
   return (
     <div className={styles.container}>
     <div className={styles.logo}>
@@ -16,6 +23,7 @@ export default function Login() {
         <input type="email" placeholder="Correo" className={styles.input} />
         <input type="password" placeholder="Contraseña" className={styles.input} />
         <button className={styles.button}>Login</button>
+        <button onClick={IraRegistro} type="button" className={styles.Registro}>Registrarse</button>
         <div className={styles.demoAccess}>
           <p>Admin: <strong>admin@rufflemaster.com</strong> / (any password)</p>
           <p>Participante: <strong>participant@rufflemaster.com</strong> / (any password)</p>

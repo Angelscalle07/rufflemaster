@@ -64,7 +64,7 @@
 }
 
 .button {
-  width: 106%;
+  width: 100%;
   background-color: #4356C5;
   color: white;
   border: none;
@@ -75,7 +75,24 @@
   transition: background 0.3s;
 }
 
+.Registro {
+  width: 100%;
+  background-color: #4455b7;
+  color: white;
+  margin-top: 10px;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
 .button:hover {
+  background-color: #3a49a8;
+}
+
+.Registro :hover {
   background-color: #3a49a8;
 }
 

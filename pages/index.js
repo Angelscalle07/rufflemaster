@@ -25,8 +25,8 @@ export default function Login() {
         <button className={styles.button}>Login</button>
         <button onClick={IraRegistro} type="button" className={styles.Registro}>Registrarse</button>
         <div className={styles.demoAccess}>
-          <p>Admin: <strong>admin@rufflemaster.com</strong> / (any password)</p>
-          <p>Participante: <strong>participant@rufflemaster.com</strong> / (any password)</p>
+          <p>Admin: <strong>admin@gmail.com</strong> / (any password)</p>
+          <p>Participante: <strong>participant@gmail.com</strong> / (any password)</p>
         </div>
       </form>
     </div>

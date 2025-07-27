@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import React from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Registro.module.css';
 
 export default function Registro() {
@@ -6,9 +8,45 @@ export default function Registro() {
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [confirmar, setConfirmar] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
-  const handleSubmit = (e) => {
+  const router = useRouter();
+
+   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (contraseña !== confirmar) {
+      setMensaje('❌ Las contraseñas no coinciden');
+      return;
+    }
+
+    try {
+      const respuesta = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    body: JSON.stringify({
+    nombre,
+    email: correo,
+    password: contraseña,
+  }),
+});
+
+      const datos = await respuesta.json();
+
+      if (respuesta.ok) {
+        setMensaje('✅ Usuario registrado correctamente');
+        setTimeout(() => {
+          router.push('/');
+        }, 1500);
+      } else {
+        setMensaje(`❌ Error: ${datos.message || 'Error al registrar'}`);
+      }
+    } catch (error) {
+      console.error(error);
+      setMensaje('❌ Error al conectar con el servidor');
+    }
   };
 
   return (
@@ -29,6 +67,7 @@ export default function Registro() {
 
         <button type="submit" className={styles.boton}>Registrarse</button>
       </form>
+      {mensaje && <p>{mensaje}</p>}
     </div>
   );
 }

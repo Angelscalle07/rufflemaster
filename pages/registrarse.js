@@ -11,6 +11,7 @@ export default function Registro() {
   const [mensaje, setMensaje] = useState('');
 
   const router = useRouter();
+  const [rol, setRol] = useState('participante');
 
    const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ export default function Registro() {
     nombre,
     email: correo,
     password: contraseña,
+    rol,
   }),
 });
 
@@ -41,7 +43,7 @@ export default function Registro() {
           router.push('/');
         }, 1500);
       } else {
-        setMensaje(`❌ Error: ${datos.message || 'Error al registrar'}`);
+        setMensaje(`❌ ${datos.message || 'Error al registrar'}`);
       }
     } catch (error) {
       console.error(error);
@@ -64,6 +66,11 @@ export default function Registro() {
 
         <label>Confirmar contraseña</label>
         <input type="password" value={confirmar} onChange={(e) => setConfirmar(e.target.value)} required />
+
+        <select value={rol} onChange={(e) => setRol(e.target.value)} required>
+        <option value="participante">Participante</option>
+        <option value="admin">Administrador</option>
+      </select>
 
         <button type="submit" className={styles.boton}>Registrarse</button>
       </form>

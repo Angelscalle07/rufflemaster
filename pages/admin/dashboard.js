@@ -3,11 +3,25 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 
 export default function AdminDashboard() {
+  const [primerNombre, setPrimerNombre] = useState('');
+
 
   const router = useRouter();
+
+  
+
+
+  useEffect(() => {
+      const nombreCompleto = localStorage.getItem('nombreUsuario');
+      if (nombreCompleto) {
+        const partes = nombreCompleto.split(' ');
+        setPrimerNombre(partes[0]);
+      }
+    }, []);
 
   const irARifas = () => {
     router.push('/admin/rifas/listado');
@@ -41,7 +55,7 @@ export default function AdminDashboard() {
       </aside>
 
       <main className={styles.main}>
-        <h1>Bienvenido, Administrador</h1>
+        <h1>Bienvenido, {primerNombre}!</h1>
         <p>Aquí puedes administrar rifas, usuarios y monitorear el sistema.</p>
         <h1 className={styles.heading}>Panel de Administración</h1>
 

@@ -3,10 +3,22 @@ import React from 'react';
 import styles from './usuario.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function DashboardUsuario() {
+  const [primerNombre, setPrimerNombre] = useState('');
+
+  
 
   const router = useRouter();
+
+  useEffect(() => {
+    const nombreCompleto = localStorage.getItem('nombreUsuario');
+    if (nombreCompleto) {
+      const partes = nombreCompleto.split(' ');
+      setPrimerNombre(partes[0]);
+    }
+  }, []);
 
   const irARifasActivas = () => {
     router.push('/usuario/rifas');
@@ -38,7 +50,7 @@ export default function DashboardUsuario() {
       </aside>
 
       <main className={styles.main}>
-        <h2>Bienvenido, Participante</h2>
+        <h2>Bienvenido, {primerNombre}!</h2>
         <p>Explora las rifas activas y consulta tus boletos.</p>
         <div className={styles.cardGrid}>
           <div className={styles.card}>

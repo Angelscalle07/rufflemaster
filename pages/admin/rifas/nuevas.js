@@ -1,4 +1,3 @@
-// pages/admin/rifas/nueva.js
 import React, { useState } from 'react';
 import styles from './nueva.module.css';
 import { useRouter } from 'next/router';
@@ -6,16 +5,41 @@ import { useRouter } from 'next/router';
 export default function NuevaRifa() {
   const router = useRouter();
 
-  const [nombre, setNombre] = useState('');
+  const [titulo, setTitulo] = useState('');
   const [descripcion, setDescripcion] = useState('');
-  const [fecha, setFecha] = useState('');
+  const [fechaInicio, setFechaInicio] = useState('');
+  const [fechaFin, setFechaFin] = useState('');
   const [premio, setPremio] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ nombre, descripcion, fecha, premio });
-    alert('🎉 Rifa creada (simulado)');
-    router.push('/admin/rifas/listado');
+
+    try {
+      const res = await fetch('/api/rifas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          titulo,
+          descripcion,
+          fecha_inicio: fechaInicio,
+          fecha_fin: fechaFin,
+          premio,
+          creada_por: 1
+        })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMensaje(data.mensaje);
+        setTimeout(() => router.push('/admin/rifas/listado'), 1500);
+      } else {
+        setMensaje(`❌ Error: ${data.message || 'No se pudo crear la rifa'}`);
+      }
+    } catch (error) {
+      setMensaje('❌ Error al conectar con el servidor');
+    }
   };
 
   return (
@@ -24,41 +48,26 @@ export default function NuevaRifa() {
 
       <form onSubmit={handleSubmit} className={styles.formulario}>
         <label>Nombre de la rifa</label>
-        <input
-          type="text"
-          placeholder="Ej: Rifa Día del Padre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
+        <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} required />
 
         <label>Descripción</label>
-        <textarea className={styles.textareaDescripcion}
-          placeholder="Describe brevemente la rifa..."
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-          required
-        ></textarea>
+        <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} required></textarea>
 
-        <label>Fecha del sorteo</label>
-        <input className='styles.inputFecha'
-          type="date"
-          value={fecha}
-          onChange={(e) => setFecha(e.target.value)}
-          required
-        />
+        <label>Fecha de inicio</label>
+        <input type="date" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} required />
+
+        <label>Fecha de fin</label>
+        <input type="date" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} required />
 
         <label>Premio principal</label>
-        <input className='styles.inputPremio'
-          type="text"
-          placeholder="Ej: Televisor de 50 pulgadas"
-          value={premio}
-          onChange={(e) => setPremio(e.target.value)}
-          required
-        />
+        <input type="text" value={premio} onChange={(e) => setPremio(e.target.value)} required />
 
         <button type="submit" className={styles.botonCrear}>Crear Rifa</button>
       </form>
+
+      {mensaje && <p>{mensaje}</p>}
     </div>
   );
 }
+
+

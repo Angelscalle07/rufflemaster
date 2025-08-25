@@ -54,3 +54,20 @@
 .btn:hover {
   background-color: #2c3aa2;
 }
+
+
+.btnVolver {
+  font-size: 16px;
+  background-color: #4356C5;
+  color: white;
+  border: none;
+  width: 15%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} 
+
+.btnVolver:hover {
+  background-color: #2f409f;
+}

@@ -29,9 +29,14 @@ export default function Login() {
           if (datos.usuario.rol === 'admin') {
             router.push('/admin/dashboard');
             localStorage.setItem('nombreUsuario', datos.usuario.nombre);
+            localStorage.setItem('usuario_id', datos.usuario.id);
+            localStorage.setItem('usuario_nombre', datos.usuario.nombre);
           } else {
             router.push('/usuario/dashboard');
             localStorage.setItem('nombreUsuario', datos.usuario.nombre);
+            localStorage.setItem('usuario_id', datos.usuario.id);
+            localStorage.setItem('usuario_nombre', datos.usuario.nombre);
+
           }
         }, 1500);        
       } else {

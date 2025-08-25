@@ -39,3 +39,34 @@
   margin: 0.3rem 0;
   font-size: 0.95rem;
 }
+
+
+.btnCancelar {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnCancelar:hover {
+  background-color: #cc0000;
+}
+
+.btnVolver {
+  font-size: 16px;
+  background-color: #4356C5;
+  color: white;
+  margin-top: 10px;
+  border: none;
+  width: 15%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} 
+
+.btnVolver:hover {
+  background-color: #2f409f;
+}

@@ -34,6 +34,35 @@ export default function ListadoRifas() {
   const editarRifa = (id) => {
     router.push(`/admin/rifas/editar?id=${id}`);
   };
+
+  function isPlayable(fecha_fin) {
+    const fin = new Date(fecha_fin).getTime();
+    return !isNaN(fin) && Date.now() >= fin;
+  }
+
+  const jugarRifa = async (id) => {
+  try {
+    const response = await fetch(`/api/rifas/${id}/jugar`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      alert("❌ " + (errorData.error || "Error al jugar la rifa"));
+      return;
+    }
+
+    const data = await response.json();
+    alert("🎉 Rifa jugada con éxito. Ganador: Usuario " + data.usuario_ganador);
+  } catch (error) {
+    console.error(error);
+    alert("⚠️ Error en la conexión con el servidor");
+  }
+};
+  const [playingId, setPlayingId] = useState(null);
   return (
     <div className={styles.contenedor}>
       <h1 className={styles.titulo}>🎟️ Listado de Rifas</h1>
@@ -55,6 +84,7 @@ export default function ListadoRifas() {
               <td className={styles.acciones}>
                 <button className={styles.btnEditar} onClick={() => editarRifa(rifa.id)}>✏️ Editar</button>
                 <button className={styles.btnEliminar} onClick={() => eliminarRifa(rifa.id)}>🗑️ Eliminar</button>
+                <button onClick={() => jugarRifa(rifa.id)} disabled={new Date(rifa.fecha_fin) > new Date() || rifa.estado === 'finalizada'}className={styles.btnJugar}>🎲 Jugar</button>
               </td>
             </tr>
           ))}

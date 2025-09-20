@@ -1,42 +1,46 @@
-import styles from './Usuarios.module.css';
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
+import styles from "./Usuarios.module.css";
 
-const Usuarios = () => {
-  const usuarios = [
-    { id: 1, nombre: 'Juan Pérez', email: 'juan@correo.com', rol: 'Participante' },
-    { id: 2, nombre: 'Laura Gómez', email: 'laura@correo.com', rol: 'Administrador' },
-    { id: 3, nombre: 'Carlos Díaz', email: 'carlos@correo.com', rol: 'Participante' },
-  ];
+export default function UsuariosActivos() {
+  const [usuarios, setUsuarios] = useState([]);
+
+  const router = useRouter();
+  
+    const VolverDashboard = () => {
+      router.push('/admin/dashboard');
+    };
+
+  useEffect(() => {
+    fetch("/api/usuarios/activos")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setUsuarios(data);
+        } else {
+          setUsuarios([]);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.titulo}>Gestión de Usuarios</h1>
-      <p className={styles.subtitulo}>Administra los usuarios registrados y sus permisos.</p>
-
-      <table className={styles.tabla}>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usuarios.map(usuario => (
-            <tr key={usuario.id}>
-              <td>{usuario.nombre}</td>
-              <td>{usuario.email}</td>
-              <td>{usuario.rol}</td>
-              <td className={styles.acciones}>
-                <button className={styles.btnEditar}>✏️ Editar</button>
-                <button className={styles.btnEliminar}>🗑️ Eliminar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h2 className={styles.title}>🟢 Usuarios Registrados</h2>
+      <ul className={styles.list}>
+        {usuarios.map((u) => (
+          <li key={u.id} className={styles.item}>
+            <div>
+              <p className={styles.userName}>{u.nombre}</p>
+              <p className={styles.userEmail}>{u.email}</p>
+            </div>
+            <span className={styles.status}>Activo</span>
+          </li>
+        ))}
+      </ul>
+      <button className={styles.btnVolver} onClick={VolverDashboard}>🔙 Volver al Dashboard</button>
     </div>
   );
-};
+}
 
-export default Usuarios;
+

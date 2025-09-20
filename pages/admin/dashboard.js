@@ -34,7 +34,14 @@ export default function AdminDashboard() {
   const irAGestionUsuarios = () => {
     router.push('/admin/usuarios');
   };
+
+  const IrAFraudes = () => {
+    router.push('/admin/fraudes');
+  };
   
+  const irAResultados = () => {
+    router.push('/admin/resultados');
+  }
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
@@ -73,17 +80,17 @@ export default function AdminDashboard() {
       <button onClick={irAGestionUsuarios} className={styles.panelBtn}>Ver usuarios</button>
     </div>
 
-    <div className={styles.panel}>
-      <h3>🔗 Blockchain</h3>
-      <p>Consulta la trazabilidad de rifas registradas.</p>
-      <button className={styles.panelBtn}>Auditar</button>
-    </div>
-
     <div className={`${styles.panel} ${styles.alertPanel}`}>
       <h3>⚠️ Alertas Antifraude</h3>
       <p>Monitorea irregularidades detectadas por IA.</p>
-      <button className={styles.alertBtn}>Ver alertas</button>
+      <button onClick={IrAFraudes} className={styles.alertBtn}>Ver alertas</button>
     </div>
+
+    <div className={styles.panel}>
+      <h3>🏆 Resultados</h3>
+      <p>Consulta los resultados de rifas anteriores.</p>
+      <button onClick={irAResultados} className={styles.panelBtn}>Ver Resultados</button>
+      </div>
     </div>
     </main>
     </div>

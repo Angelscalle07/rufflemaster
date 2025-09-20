@@ -15,7 +15,7 @@ export default function Resultados() {
   const router = useRouter();
 
   const VolverDashboard = () => {
-    router.push('/usuario/dashboard');
+    router.push('/admin/dashboard');
   };
 
   return (
@@ -37,3 +37,6 @@ export default function Resultados() {
     </div>
   );
 }
+
+
+

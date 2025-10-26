@@ -7,7 +7,6 @@
 
 .titulo {
   font-size: 2rem;
- 
   margin-bottom: 0.5rem;
 }
 
@@ -61,5 +60,87 @@
 
 .boton:hover {
   background-color: #2a369c;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .titulo {
+    font-size: 1.8rem;
+  }
+
+  .seccion {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    padding: 1.2rem;
+  }
+
+  .titulo {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .subtitulo {
+    text-align: center;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .input {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+
+  .boton,
+  .btnVolver {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .titulo {
+    font-size: 1.4rem;
+  }
+
+  .seccion {
+    font-size: 1.1rem;
+  }
+
+  .descripcion {
+    font-size: 0.85rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .input {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .boton,
+  .btnVolver {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.65rem;
+  }
 }
 

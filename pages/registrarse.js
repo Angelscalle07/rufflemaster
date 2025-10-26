@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import React from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Registro.module.css';
@@ -52,6 +53,11 @@ export default function Registro() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Registro</title>
+      <meta name="description" content="Regístrate en Rufflemaster para participar en rifas y gestionar tu perfil." />
+    </Head>
     <div className={styles.container}>
       <h1 className={styles.h1}>📝 Registro de Participantes</h1>
       <form className={styles.formulario} onSubmit={handleSubmit}>
@@ -76,5 +82,6 @@ export default function Registro() {
       </form>
       {mensaje && <p>{mensaje}</p>}
     </div>
+    </>
   );
 }

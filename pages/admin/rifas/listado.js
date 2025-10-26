@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from './listado.module.css';
 
@@ -64,6 +65,11 @@ export default function ListadoRifas() {
 };
   const [playingId, setPlayingId] = useState(null);
   return (
+    <>
+    <Head>
+      <title>Listado de Rifas</title>
+      <meta name="description" content="Administra las rifas en Rufflemaster: edita, elimina y juega rifas fácilmente." />
+    </Head>
     <div className={styles.contenedor}>
       <h1 className={styles.titulo}>🎟️ Listado de Rifas</h1>
       <table className={styles.tabla}>
@@ -92,6 +98,7 @@ export default function ListadoRifas() {
       </table>
       <button className={styles.btnVolver} onClick={VolverDashboard}>🔙 Volver al Dashboard</button>
     </div>
+    </>
   );
 }
 

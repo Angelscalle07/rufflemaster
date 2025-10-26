@@ -1,21 +1,27 @@
+/* Contenedor principal */
 .container {
   padding: 2rem;
   font-family: sans-serif;
   background-color: #e0f4f1;
-  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
+/* Subtítulo */
 .subtitulo {
   color: #444;
   margin-bottom: 1rem;
+  font-size: 1.4rem;
 }
 
+/* Grid responsivo */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
+/* Tarjetas */
 .card {
   padding: 1.5rem;
   border-radius: 10px;
@@ -39,6 +45,7 @@
   font-size: 0.95rem;
 }
 
+/* Tarjetas según tipo */
 .ganador {
   border-left: 6px solid #4CAF50; /* Verde */
 }
@@ -47,12 +54,14 @@
   border-left: 6px solid #ccc; /* Gris claro */
 }
 
+/* Botón */
 .btnVolver {
   font-size: 16px;
   background-color: #4356C5;
   color: white;
   border: none;
   width: 15%;
+  min-width: 100px; /* asegura tamaño mínimo */
   margin-top: 15px;
   padding: 12px;
   border-radius: 8px;
@@ -62,4 +71,41 @@
 
 .btnVolver:hover {
   background-color: #2f409f;
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .subtitulo {
+    font-size: 1.2rem;
+  }
+
+  .btnVolver {
+    width: 40%; /* más ancho en tablet */
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+  }
+
+  .btnVolver {
+    width: 50%; /* ocupa casi todo el ancho en móviles */
+  }
+
+  .card {
+    padding: 1rem;
+  }
 }

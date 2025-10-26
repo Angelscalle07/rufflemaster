@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import styles from './Rifas.module.css';
 import { useRouter } from 'next/router';
 import { connectWallet } from '../../utils/wallet';
@@ -25,14 +26,14 @@ export default function RifasActivas() {
       setWallet(account);
       alert(`✅ Wallet conectada: ${account}`);
 
-      // Aquí mandamos al backend para guardar la wallet en el usuario
+      
       const usuarioId = localStorage.getItem('usuario_id');
       if (usuarioId) {
         await fetch('/api/update-wallet', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            user_id: usuarioId,
+            usuario_id: usuarioId,
             wallet_address: account,
           }),
         });
@@ -88,30 +89,48 @@ export default function RifasActivas() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Rifas</title>
+      <meta name="description" content="Explora y participa en sorteos disponibles en Rufflemaster"/>
+    </Head>
     <div className={styles.container}>
-      <h1>🎫 Rifas Activas</h1>
+      <h1>🎫 Rifas</h1>
       <p className={styles.subtitulo}>Explora y participa en sorteos disponibles</p>
-
-      <button className={styles.btn} onClick={handleConectarWallet}>
-        {wallet ? `✅ Wallet: ${wallet.substring(0, 6)}...${wallet.slice(-4)}` : "🔗 Conectar Wallet"}
-      </button>
 
       <div className={styles.grid}>
         {rifas.map((rifa) => (
           <div key={rifa.id} className={styles.card}>
-            <h3>{rifa.titulo}</h3>
-            <p>{rifa.descripcion}</p>
-            <p><strong>Fecha inicio:</strong> {new Date(rifa.fecha_inicio).toLocaleDateString()}</p>
-            <p><strong>Fecha fin:</strong> {new Date(rifa.fecha_fin).toLocaleDateString()}</p>
-            <button 
-              className={styles.btn}
-              onClick={() => handleComprar(rifa.id)}>Participar</button>
-          </div>
-        ))}
-      </div>
+          <h3>{rifa.titulo}</h3>
+          <p>{rifa.descripcion}</p>
+          <p><strong>Fecha inicio:</strong> {new Date(rifa.fecha_inicio).toLocaleDateString()}</p>
+          <p><strong>Fecha fin:</strong> {new Date(rifa.fecha_fin).toLocaleDateString()}</p>
+          <p><strong>Estado:</strong> {rifa.estado_real}</p>
 
+          {rifa.estado_real === "activa" ? (
+          <button 
+          className={styles.btn}
+          onClick={() => handleComprar(rifa.id)}
+          >
+          Participar
+          </button>
+        ) : (
+      <button className={styles.btnDisabled} disabled>
+        {rifa.estado_real === "pendiente_jugar"
+          ? "Rifa cerrada (pendiente de sorteo)"
+          : "Finalizada"}
+      </button>
+    )}
+  </div>
+))}
+
+      </div>
+      <button className={styles.btn} onClick={handleConectarWallet}>
+        {wallet ? `✅ Wallet: ${wallet.substring(0, 6)}...${wallet.slice(-4)}` : "🔗 Conectar Wallet"}
+      </button>
       <button className={styles.btnVolver} onClick={VolverDashboard}>🔙 Volver al Dashboard</button>
     </div>
+    </>
   ); 
 }
 

@@ -1,14 +1,14 @@
 import Link from 'next/link'; 
+import Head from 'next/head';
 import React from 'react';  
 import styles from './usuario.module.css';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function DashboardUsuario() {
   const [primerNombre, setPrimerNombre] = useState('');
-
-  
 
   const router = useRouter();
 
@@ -33,6 +33,12 @@ export default function DashboardUsuario() {
   }
 
   return (
+    <ProtectedRoute>
+    <>
+    <Head>
+      <title>Inicio</title>
+      <meta name="description" content="Panel de usuario de Rufflemaster"/>
+    </Head>
     <div className={styles.container}>
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
@@ -44,7 +50,16 @@ export default function DashboardUsuario() {
             <li><Link href="/usuario/boletos">Mis boletos</Link></li>
             <li><Link href="/usuario/resultados">Resultados</Link></li>
             <li><Link href="/usuario/perfil">Mi perfil</Link></li>
-            <li><Link href="/" style={{ color: 'red' }}>Cerrar sesion</Link></li>
+            <li
+            className={styles.cerrarsesion}
+            onClick={() => {
+            localStorage.clear();
+            window.location.href = '/';
+          }}
+          style={{ color: 'red', background: 'none', border: 'none', cursor: 'pointer' }}
+          >
+          Cerrar Sesión
+          </li>
             </ul>
         </nav>
       </aside>
@@ -73,6 +88,8 @@ export default function DashboardUsuario() {
         </div>
       </main>
     </div>
+    </>
+    </ProtectedRoute>
   );
 }
 

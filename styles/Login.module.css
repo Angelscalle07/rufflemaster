@@ -3,23 +3,28 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh; /* mejor que 100vh en móviles */
   background-color: #E0F4F1;
   font-family: 'Segoe UI', sans-serif;
+  padding: 1rem; /* evita que el contenido pegue con los bordes */
+  box-sizing: border-box;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+  flex-wrap: wrap; /* permite que se acomode en pantallas pequeñas */
+  text-align: center;
 }
 
 .logoImg {
   width: 400px;
-  height: 300px;
-  margin-bottom: -100px;
+  height: auto;
+  margin-bottom: -80px;
   margin-right: 10px;
-
+  max-width: 100%; /* 📱 ahora escala automáticamente */
 }
 
 .icon {
@@ -47,12 +52,14 @@
   font-size: 1.6rem;
   font-weight: bold;
   color: #2c3e50;
+  text-align: center;
 }
 
 .subtitle {
   font-size: 0.9rem;
   margin-bottom: 20px;
   color: #444;
+  text-align: center;
 }
 
 .input {
@@ -60,10 +67,12 @@
   padding: 10px 12px;
   margin-bottom: 15px;
   border-radius: 5px;
-  border: 1px solid white;
+  border: 1px solid #ccc; /* blanco era poco visible */
+  box-sizing: border-box;
 }
 
-.button {
+.button,
+.Registro {
   width: 100%;
   background-color: #4356C5;
   color: white;
@@ -75,29 +84,74 @@
   transition: background 0.3s;
 }
 
+.button:hover,
+.Registro:hover {
+  background-color: #3a49a8;
+}
+
 .Registro {
-  width: 100%;
-  background-color: #4455b7;
-  color: white;
   margin-top: 10px;
-  border: none;
-  padding: 10px 12px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.button:hover {
-  background-color: #3a49a8;
-}
-
-.Registro :hover {
-  background-color: #3a49a8;
+  background-color: #4455b7;
 }
 
 .demoAccess {
   font-size: 0.8rem;
   margin-top: 15px;
   color: #555;
+  text-align: center;
+}
+
+/* 📱 Responsividad */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+  .logoImg {
+    width: 280px;
+    margin-bottom: -50px;
+  }
+
+  .brand {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    padding: 20px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .logo {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .logoImg {
+    width: 220px;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+
+  .brand {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  .form {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+  }
+
+  .button,
+  .Registro {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
 }

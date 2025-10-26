@@ -1,6 +1,8 @@
 import styles from './admin.module.css';
 import React from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -43,6 +45,12 @@ export default function AdminDashboard() {
     router.push('/admin/resultados');
   }
   return (
+    <ProtectedRoute>
+    <>
+    <Head>
+      <title>Inicio</title>
+      <meta name="description" content="Panel de administración de Rufflemaster"/>
+    </Head>
     <div className={styles.container}>
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
@@ -50,19 +58,27 @@ export default function AdminDashboard() {
         </div>
         <nav className={styles.nav}>
           <ul>
-            <li><Link href="/admin/usuarios">Manejo de usuarios</Link></li>
-            <li><Link href="#">Blockchain seguimiento</Link></li>
-            <li><Link href="#">Reportes</Link></li>
             <li><Link href="#">Alertas de fraude</Link></li>
             <li><Link href="/admin/perfil">Mi perfil</Link></li>
-            <li><Link href="#">Configuracion</Link></li>
-            <li><Link href="/" style={{ color: 'red' }}>Cerrar sesion</Link></li>
+            <li
+              className={styles.cerrarsesion}
+              onClick={() => {
+              localStorage.clear();
+              document.cookie = 'usuario_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              document.cookie = 'rol=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              window.location.href = '/';
+            }}
+              style={{ color: 'red', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+            Cerrar Sesión
+            </li>
+
           </ul>
         </nav>
       </aside>
 
       <main className={styles.main}>
-        <h1>Bienvenido, {primerNombre}!</h1>
+        <h2>Bienvenido, {primerNombre}!</h2>
         <p>Aquí puedes administrar rifas, usuarios y monitorear el sistema.</p>
         <h1 className={styles.heading}>Panel de Administración</h1>
 
@@ -71,13 +87,8 @@ export default function AdminDashboard() {
       <h3>🎯 Administrar Rifas</h3>
       <p>Crea, edita y monitorea rifas activas.</p>
       <button onClick={irANuevaRifa} className={styles.panelBtn}>Crear rifa</button>
+      <br></br>
       <button onClick={irARifas} className={styles.panelBtn}>Ver rifas</button>
-    </div>
-
-    <div className={styles.panel}>
-      <h3>👥 Gestión de Usuarios</h3>
-      <p>Administra participantes y permisos.</p>
-      <button onClick={irAGestionUsuarios} className={styles.panelBtn}>Ver usuarios</button>
     </div>
 
     <div className={`${styles.panel} ${styles.alertPanel}`}>
@@ -94,5 +105,7 @@ export default function AdminDashboard() {
     </div>
     </main>
     </div>
+    </>
+    </ProtectedRoute>
   );
 }

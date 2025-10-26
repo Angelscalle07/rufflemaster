@@ -78,3 +78,66 @@
 .btnVolver:hover {
   background-color: #2f409f;
 }
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .contenedor {
+    padding: 1rem;
+  }
+
+  .titulo {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  /* tabla en scroll horizontal */
+  .tabla {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 6px;
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 10px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .acciones button {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 1.2rem;
+  }
+
+  .tabla th,
+  .tabla td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .acciones button {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .btnVolver {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}

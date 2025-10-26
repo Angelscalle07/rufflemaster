@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import styles from "./Resultados.module.css";
 import { useRouter } from 'next/router';
 
@@ -19,6 +20,11 @@ export default function Resultados() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Resultados de Rifas</title>
+      <meta name="description" content="Consulta los resultados de rifas pasadas en Rufflemaster"/>
+    </Head>
     <div className={styles.container}>
       <h1>🏆 Resultados de Rifas</h1>
       <p className={styles.subtitulo}>Consulta si has ganado en rifas pasadas</p>
@@ -35,5 +41,6 @@ export default function Resultados() {
       </div>
       <button className={styles.btnVolver} onClick={VolverDashboard}>🔙 Volver al Dashboard</button>
     </div>
+    </>
   );
 }

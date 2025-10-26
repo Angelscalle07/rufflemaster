@@ -27,6 +27,7 @@
   border-radius: 6px;
   margin: 20px;
 }
+
 .input {
   padding: 10px;
   font-size: 1rem;
@@ -47,4 +48,56 @@
 
 .boton:hover {
   background-color: #3b47aa;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+
+  .h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .select,
+  .input {
+    font-size: 0.95rem;
+    padding: 8px;
+    margin: 10px 0;
+  }
+
+  .boton {
+    padding: 10px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    margin: 1.5rem auto;
+    padding: 1rem;
+  }
+
+  .h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .select,
+  .input {
+    font-size: 0.9rem;
+    padding: 7px;
+    margin: 8px 0;
+  }
+
+  .boton {
+    padding: 9px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
 }

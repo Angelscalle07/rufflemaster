@@ -2,13 +2,15 @@
   padding: 2rem;
   font-family: sans-serif;
   background-color: #e0f4f1;
-  height: 100vh;
+  min-height: 100vh; 
+  box-sizing: border-box;
 }
 
 .subtitulo {
   font-size: 1.1rem;
   color: #555;
   margin-bottom: 2rem;
+  text-align: center; 
 }
 
 .grid {
@@ -25,6 +27,8 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 300px;
   transition: transform 0.2s ease;
+  flex: 1 1 280px; 
+  max-width: 350px;
 }
 
 .card:hover {
@@ -41,7 +45,8 @@
   margin-bottom: 0.5rem;
 }
 
-.btn {
+.btn,
+.btnVolver {
   background-color: #3b4cca;
   color: white;
   border: none;
@@ -49,25 +54,70 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  display: inline-block;
+  margin-top: 0.5rem;
 }
 
-.btn:hover {
+.btn:hover,
+.btnVolver:hover {
   background-color: #2c3aa2;
 }
 
-
 .btnVolver {
-  font-size: 16px;
-  background-color: #4356C5;
-  color: white;
-  border: none;
-  width: 15%;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-} 
+  margin-left: 10px;
+  background-color: #3b4cca;
+}
 
 .btnVolver:hover {
   background-color: #2f409f;
+}
+
+
+.btnDisabled {
+  background-color: #ccc;
+  color: #666;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transition: background-color 0.3s ease;
+}
+
+.btnDisabled:hover {
+  background-color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .btn,
+  .btnVolver {
+    width: 100%;
+    text-align: center;
+  }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './Boletos.module.css';
+import Head from 'next/head';
 
 export default function Boletos() {
   const [boletos, setBoletos] = useState([]);
@@ -27,23 +28,61 @@ export default function Boletos() {
     }
   };
 
+  const finalizarRifa = async (rifa_Id) => {
+  try {
+    const res = await fetch(`/api/rifas/${rifa_Id}/finalizar`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert(data.message);
+    } else {
+      alert("❌ Error al finalizar rifa");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("❌ Error en la conexión");
+  }
+};
+
+
   return (
+    <>
+    <Head>
+      <title>Mis Boletos</title>
+      <meta name="description" content="Consulta y gestiona tus boletos comprados en Rufflemaster." />
+    </Head>
     <div className={styles.container}>
       <h1>🎟️ Mis Boletos</h1>
       <p className={styles.subtitulo}>Aquí puedes ver los boletos comprados y su estado.</p>
 
       <div className={styles.grid}>
         {boletos.map(boleto => (
-          <div key={boleto.id} className={styles.card}>
-            <h2>{boleto.rifa?.titulo}</h2>
-            <p><strong>Cantidad:</strong> {boleto.cantidad}</p>
-            <p><strong>Fecha:</strong> {new Date(boleto.fecha_compra).toLocaleDateString()}</p>
-            <p><strong>Estado:</strong> {boleto.estado}</p>
-            <button className={styles.btnCancelar} onClick={() => eliminarBoleto(boleto.id)}>❌ Cancelar</button>
-          </div>
-        ))}
+        <div key={boleto.id} className={styles.card}>
+        <h2>{boleto.rifa?.titulo}</h2>
+        <p><strong>Cantidad:</strong> {boleto.cantidad}</p>
+        <p><strong>Fecha:</strong> {new Date(boleto.fecha_compra).toLocaleDateString()}</p>
+        <p><strong>Estado:</strong> {boleto.estado}</p>
+
+        {boleto.estado === "Activo" ? (
+          <button
+            className={styles.btnCancelar}
+            onClick={() => eliminarBoleto(boleto.id)}
+          >
+          ❌ Cancelar
+          </button>
+          ) : (
+          <button className={styles.btnDisabled} disabled>
+          🚫 Finalizado
+          </button>
+        )}
+      </div>
+    ))}
       </div>
       <button className={styles.btnVolver} onClick={VolverDashboard}>🔙 Volver al Dashboard</button>
     </div>
+    </>
   );
 }

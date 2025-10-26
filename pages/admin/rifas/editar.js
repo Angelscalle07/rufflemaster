@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from './editar.module.css';
 
@@ -58,6 +59,11 @@ export default function EditarRifa() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Editar Rifa</title>
+      <meta name="description" content="Edita los detalles de la rifa en Rufflemaster." />
+    </Head>
     <div className={styles.contenedor}>
       <h1 className={styles.titulo}>✏️ Editar Rifa</h1>
       <form onSubmit={handleSubmit} className={styles.formulario}>
@@ -85,5 +91,6 @@ export default function EditarRifa() {
         <button type="submit" className={styles.botonCrear}>Guardar Cambios</button>
       </form>
     </div>
+    </>
   );
 }

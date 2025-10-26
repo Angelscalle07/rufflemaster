@@ -1,5 +1,6 @@
 import styles from '../styles/Login.module.css';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { useState } from 'react';
 
 export default function Login() {
@@ -26,20 +27,18 @@ export default function Login() {
       if (respuesta.ok) {
         setMensaje('✅ Inicio de sesión exitoso');
         setTimeout(() => {
-          if (datos.usuario.rol === 'admin') {
-            router.push('/admin/dashboard');
-            localStorage.setItem('nombreUsuario', datos.usuario.nombre);
-            localStorage.setItem('usuario_id', datos.usuario.id);
-            localStorage.setItem('usuario_nombre', datos.usuario.nombre);
-          } else {
-            router.push('/usuario/dashboard');
-            localStorage.setItem('nombreUsuario', datos.usuario.nombre);
-            localStorage.setItem('usuario_id', datos.usuario.id);
-            localStorage.setItem('usuario_nombre', datos.usuario.nombre);
+        localStorage.setItem('rol', datos.usuario.rol);
+        localStorage.setItem('nombreUsuario', datos.usuario.nombre);
+        localStorage.setItem('usuario_id', datos.usuario.id);
+        localStorage.setItem('usuario_nombre', datos.usuario.nombre);
 
-          }
-        }, 1500);        
-      } else {
+        if (datos.usuario.rol === 'admin') {
+          router.push('/admin/dashboard');
+        } else {
+          router.push('/usuario/dashboard');
+        }
+      }, 1500);
+    } else {
         setMensaje(`${datos.mensaje || datos.message || 'Error al iniciar sesión'}`);
 
       }
@@ -54,6 +53,11 @@ export default function Login() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Login</title>
+      <meta name="description" content="Inicia sesión en tu cuenta de Rufflemaster para participar en rifas y gestionar tu perfil." />
+    </Head>
     <div className={styles.container}>
       <div className={styles.logo}>
         <img src="/Logo rufflemaster.png" alt="Logo de Rufflemaster" className={styles.logoImg} />
@@ -73,6 +77,7 @@ export default function Login() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

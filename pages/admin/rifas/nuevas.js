@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import styles from './nueva.module.css';
 import { useRouter } from 'next/router';
 
@@ -43,6 +44,11 @@ export default function NuevaRifa() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Nueva Rifa</title>
+      <meta name="description" content="Crea una nueva rifa en Rufflemaster para que los usuarios puedan participar." />
+    </Head>
     <div className={styles.contenedor}>
       <h1 className={styles.titulo}>➕ Crear Nueva Rifa</h1>
 
@@ -67,6 +73,7 @@ export default function NuevaRifa() {
 
       {mensaje && <p>{mensaje}</p>}
     </div>
+    </>
   );
 }
 

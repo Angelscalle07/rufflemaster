@@ -58,7 +58,7 @@ export default function AdminDashboard() {
         </div>
         <nav className={styles.nav}>
           <ul>
-            <li><Link href="#">Alertas de fraude</Link></li>
+            <li><Link href="/admin/fraudes">Alertas de fraude</Link></li>
             <li><Link href="/admin/perfil">Mi perfil</Link></li>
             <li
               className={styles.cerrarsesion}

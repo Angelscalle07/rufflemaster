@@ -7,6 +7,8 @@ export default function Login() {
   const router = useRouter();
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const [codigoMFA, setCodigoMFA] = useState('');
+  const [mfaRequerido, setMfaRequerido] = useState(false);
   const [mensaje, setMensaje] = useState('');
 
   const handleLogin = async (e) => {
@@ -19,6 +21,7 @@ export default function Login() {
         body: JSON.stringify({
           email: correo,
           password: contraseña,
+          ...(mfaRequerido && { codigo_mfa: codigoMFA }) // enviar código solo si es requerido
         }),
       });
 
@@ -27,20 +30,24 @@ export default function Login() {
       if (respuesta.ok) {
         setMensaje('✅ Inicio de sesión exitoso');
         setTimeout(() => {
-        localStorage.setItem('rol', datos.usuario.rol);
-        localStorage.setItem('nombreUsuario', datos.usuario.nombre);
-        localStorage.setItem('usuario_id', datos.usuario.id);
-        localStorage.setItem('usuario_nombre', datos.usuario.nombre);
+          localStorage.setItem('rol', datos.usuario.rol);
+          localStorage.setItem('email', datos.usuario.email);
+          localStorage.setItem('nombreUsuario', datos.usuario.nombre);
+          localStorage.setItem('usuario_id', datos.usuario.id);
+          localStorage.setItem('usuario_nombre', datos.usuario.nombre);
 
-        if (datos.usuario.rol === 'admin') {
-          router.push('/admin/dashboard');
-        } else {
-          router.push('/usuario/dashboard');
+          if (datos.usuario.rol === 'admin') {
+            router.push('/admin/dashboard');
+          } else {
+            router.push('/usuario/dashboard');
+          }
+        }, 1500);
+
+      } else {
+        if (datos.status === 'MFA_REQUIRED') {
+          setMfaRequerido(true); // mostrar input de MFA
         }
-      }, 1500);
-    } else {
-        setMensaje(`${datos.mensaje || datos.message || 'Error al iniciar sesión'}`);
-
+        setMensaje(datos.mensaje || '❌ Error al iniciar sesión');
       }
     } catch (error) {
       console.error(error);
@@ -54,30 +61,61 @@ export default function Login() {
 
   return (
     <>
-    <Head>
-      <title>Login</title>
-      <meta name="description" content="Inicia sesión en tu cuenta de Rufflemaster para participar en rifas y gestionar tu perfil." />
-    </Head>
-    <div className={styles.container}>
-      <div className={styles.logo}>
-        <img src="/Logo rufflemaster.png" alt="Logo de Rufflemaster" className={styles.logoImg} />
-      </div>
-
-      <form className={styles.form} onSubmit={handleLogin}>
-        <h2 className={styles.title}>Bienvenido</h2>
-        <p className={styles.subtitle}>Ingresa tus credenciales para acceder a Rufflemaster.</p>
-        <input type="email" placeholder="Correo" value={correo} onChange={(e) => setCorreo(e.target.value)} required className={styles.input} />
-        <input type="password" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} required className={styles.input} />
-        <button type="submit" className={styles.button}>Login</button>
-        <button onClick={IraRegistro} type="button" className={styles.Registro}>Registrarse</button>
-        {mensaje && <p>{mensaje}</p>}
-        <div className={styles.demoAccess}>
-          <p>Admin: <strong>admin@gmail.com</strong> / (any password)</p>
-          <p>Participante: <strong>participant@gmail.com</strong> / (any password)</p>
+      <Head>
+        <title>Login</title>
+        <meta name="description" content="Inicia sesión en tu cuenta de Rufflemaster para participar en rifas y gestionar tu perfil." />
+      </Head>
+      <div className={styles.container}>
+        <div className={styles.logo}>
+          <img src="/Logo rufflemaster.png" alt="Logo de Rufflemaster" className={styles.logoImg} />
         </div>
-      </form>
-    </div>
+
+        <form className={styles.form} onSubmit={handleLogin}>
+          <h2 className={styles.title}>Bienvenido</h2>
+          <p className={styles.subtitle}>Ingresa tus credenciales para acceder a Rufflemaster.</p>
+
+          <input
+            type="email"
+            placeholder="Correo"
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+            required
+            className={styles.input}
+          />
+
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
+            required
+            className={styles.input}
+          />
+
+          {mfaRequerido && (
+            <input
+              type="text"
+              placeholder="Código MFA"
+              value={codigoMFA}
+              onChange={(e) => setCodigoMFA(e.target.value)}
+              required
+              className={styles.input}
+            />
+          )}
+
+          <button type="submit" className={styles.button}>Login</button>
+          <button onClick={IraRegistro} type="button" className={styles.Registro}>Registrarse</button>
+
+          {mensaje && <p>{mensaje}</p>}
+
+          <div className={styles.demoAccess}>
+            <p>Admin: <strong>admin@gmail.com</strong> / (any password)</p>
+            <p>Participante: <strong>participant@gmail.com</strong> / (any password)</p>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
+
 

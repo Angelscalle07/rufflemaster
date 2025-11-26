@@ -8,7 +8,7 @@ export default {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://127.0.0.1:8000/api/:path*',
+        destination: 'http://host.docker.internal:8000/api/:path*',
       },
     ];
   },

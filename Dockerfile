@@ -1,23 +1,30 @@
-# Usar una imagen oficial de Node.js como base
-FROM node:18-alpine
+# --- Etapa 1: Build ---
+FROM node:18-alpine AS builder
 
-# Establecer el directorio de trabajo en el contenedor
+# Crear directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos necesarios al contenedor
-COPY package*.json ./
-
-# Instalar dependencias
+# Copiar dependencias
+COPY package.json package-lock.json ./
 RUN npm install
 
-# Copiar el resto del código fuente
+# Copiar el resto del proyecto
 COPY . .
 
-# Construir la aplicación para producción
+# Generar build de producción
 RUN npm run build
 
-# Exponer el puerto que usará Next.js
+
+# --- Etapa 2: Runtime ---
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copiar build ya generado
+COPY --from=builder /app ./
+
+# Exponer puerto donde Next corre en producción
 EXPOSE 3000
 
-# Comando para iniciar la app en producción
+# Correr la app en modo producción
 CMD ["npm", "start"]

@@ -125,7 +125,7 @@ export default function DashboardUsuario() {
               <p style={{ fontFamily: "monospace", background: "#f3f4f6", padding: "10px", borderRadius: "5px" }}>
                 {secret}
               </p>
-              <p>Agrega esta clave manualmente en Google Authenticator → "Agregar código" → "Ingresar clave".</p>
+              <p>Agrega esta clave manualmente en Google Authenticator → Agregar código → Ingresar clave.</p>
               <button onClick={() => setMostrarModalMFA(false)} className={styles.panelBtn}>Cerrar</button>
             </div>
           </div>
